@@ -31,7 +31,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "tx_api.h"
+#include "nx_api.h" 
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -67,7 +68,20 @@ void Error_Handler(void);
 #define LED_BLUE_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
+#define AUDIO_BUFFER_SIZE       2048
+#define HALF_BUFFER_SIZE        1024  
+#define AUDIO_DATA_FLAG     0x0001
+#define TEMPHUMID_DATA_FLAG 0x0002  
+#define BUTTON_DATA_FLAG    0x0004
 
+// Define the UDP_Data_Packet structure
+typedef struct {
+  void* data_ptr;
+  UINT data_size;
+  UINT data_type;
+  ULONG destination_ip;
+  UINT destination_port;
+} UDP_Data_Packet;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
